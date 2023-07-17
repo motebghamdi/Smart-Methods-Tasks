@@ -1,0 +1,73 @@
+//Row LEDs
+#define row1 0
+#define row2 1
+#define row3 2
+#define row4 3
+#define row5 4
+#define row6 5
+#define row7 6
+#define row8 7
+
+// Columns LEDs
+#define column1 8
+#define column2 9
+#define column3 10
+#define column4 11
+#define column5 12
+#define column6 13
+#define column7 A0
+#define column8 A1
+
+// Variables
+int i = 0;
+int j = 0;
+
+// Vectores to access the Adriuno board pins
+int row[] = {row1, row2, row3, row4, row5, row6, row7, row8};
+int column[] = {column1, column2, column3, column4, column5, column6, column7, column8};
+
+void setup() {
+  // Set the selected pins as output
+  pinMode (row1, OUTPUT);
+  pinMode (row2, OUTPUT);
+  pinMode (row3, OUTPUT);
+  pinMode (row4, OUTPUT);
+  pinMode (row5, OUTPUT);
+  pinMode (row6, OUTPUT);
+  pinMode (row7, OUTPUT);
+  pinMode (row8, OUTPUT);
+
+  pinMode (column1, OUTPUT);
+  pinMode (column2, OUTPUT);
+  pinMode (column3, OUTPUT);
+  pinMode (column4, OUTPUT);
+  pinMode (column5, OUTPUT);
+  pinMode (column6, OUTPUT);
+  pinMode (column7, OUTPUT);
+  pinMode (column8, OUTPUT);
+
+  // configure the anode and cathode legs of the LEDs
+  // set all LEDs to low
+  for (i = 0; i < 8; i++) {
+    digitalWrite (row[i], LOW);// anode legs are set to low with low  
+    digitalWrite (column[i], HIGH); // cathode are set to low with high
+  }
+}
+
+
+
+void loop() {
+
+  for (j = 0; j < 8; j++){
+    digitalWrite (row[j], HIGH);
+  for (i = 0; i < 8; i++){
+      digitalWrite (column[i], LOW);
+      delay(100);
+      digitalWrite (column[i], HIGH);
+      delay(100);
+    }
+     
+    delay (500);
+  }
+ 
+}
