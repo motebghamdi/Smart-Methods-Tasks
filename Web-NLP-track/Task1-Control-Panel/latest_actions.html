@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latest Actions</title>
+</head>
+<body>
+    <h1>Latest Actions</h1>
+    <div id="actionsContainer"></div>
+
+    <script>
+	fetch('get_latest_actions.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Response was not OK');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        const actionsContainer = document.getElementById('actionsContainer');
+        data.forEach(action => {
+            const actionItem = document.createElement('div');
+            actionItem.textContent = `${action.action_name} - ${action.action_timestamp}`;
+            actionsContainer.appendChild(actionItem);
+        });
+    })
+    .catch(error => console.error('Error retrieving actions:', error));
+
+
+        fetch('get_latest_actions.php')
+            .then(response => response.json())
+            .then(data => {
+                const actionsContainer = document.getElementById('actionsContainer');
+                data.forEach(action => {
+                    const actionItem = document.createElement('div');
+                    actionItem.textContent = `${action.action_name} - ${action.action_timestamp}`;
+                    actionsContainer.appendChild(actionItem);
+                });
+            })
+            .catch(error => console.log('Error retrieving actions:', error));
+    </script>
+</body>
+</html>
