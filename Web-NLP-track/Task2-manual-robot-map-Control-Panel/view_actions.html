@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Actions</title>
+</head>
+<body>
+  <h1>Latest Actions</h1>
+  <ul id="actionsList">
+    <!-- Data will be dynamically inserted here -->
+  </ul>
+
+  <!-- Include jQuery library for AJAX -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.get('get_latest_actions.php', function(arrow_actions) { // Use the correct variable name 'arrow_actions'
+        console.log(arrow_actions); // Check the response data in the browser console
+
+        // Update the HTML to display the latest actions
+        const actionsList = document.getElementById('actionsList');
+        actionsList.innerHTML = '';
+        arrow_actions.forEach(function(action) { // Use 'arrow_actions' here
+          const listItem = document.createElement('li');
+          listItem.textContent = 'ID: ' + action.id + ', Direction: ' + action.direction + ', Distance: ' + action.distance + ' cm';
+          actionsList.appendChild(listItem);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

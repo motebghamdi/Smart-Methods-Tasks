@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manual Map Control Panel</title>
+</head>
+<body>
+  <div id="controlPanel">
+    <button id="stop" style="background-color: red;">Stop</button>
+    <button id="start" style="background-color: green;">Start</button>
+    <button id="forward" style="background-color: blue;">Forward</button>
+    <button id="backward" style="background-color: orange;">Backward</button>
+    <button id="right" style="background-color: yellow;">Right</button>
+    <button id="left" style="background-color: purple;">Left</button>
+  </div>
+  <canvas id="canvas" width="400" height="400" style="border: 1px solid black;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let lastX = canvas.width / 2;
+    let lastY = canvas.height / 2;
+
+    function drawArrow(x, y, direction, distance) {
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(x, y);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      lastX = x;
+      lastY = y;
+      
+      // Send the action data to the server using AJAX (using jQuery here for simplicity)
+      $.post('insert_action.php', { direction: direction, distance: distance });
+    }
+
+    function resetPosition() {
+      lastX = canvas.width / 2;
+      lastY = canvas.height / 2;
+    }
+
+    document.getElementById('forward').addEventListener('click', () => {
+      drawArrow(lastX, lastY - 50, 'forward', 50);
+    });
+
+    document.getElementById('backward').addEventListener('click', () => {
+      drawArrow(lastX, lastY + 50, 'backward', 50);
+    });
+
+    document.getElementById('right').addEventListener('click', () => {
+      drawArrow(lastX + 50, lastY, 'right', 50);
+    });
+
+    document.getElementById('left').addEventListener('click', () => {
+      drawArrow(lastX - 50, lastY, 'left', 50);
+    });
+
+    document.getElementById('start').addEventListener('click', resetPosition);
+    document.getElementById('stop').addEventListener('click', resetPosition);
+  </script>
+
+  <!-- Include jQuery library for AJAX -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
