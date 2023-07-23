@@ -6,6 +6,8 @@ This Task achieved with the creation visualized manual map. Two html files and t
 
 "insert_action.php" the functionality to create a record of the inserted action in the control_panel.html file (back end).
 
+
+
 "view_action.html" the page that update the latest action stored in the database (this used by the IOT guys) (front end).
 
 "get_latest_action.php"  the functionality to retrieve the updated data from the database. (backend.
