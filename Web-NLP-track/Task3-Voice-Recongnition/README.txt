@@ -1,4 +1,3 @@
-
 This Task achieved the speech recognition task By combining HTML, CSS, JavaScript, PHP, and MySQL. 
 
 HTML: shows a button labeled "Start Speaking" and two paragraphs to display status messages and captured messages.
@@ -34,9 +33,9 @@ CREATE TABLE captured_messages (
 3. In the PHP File, update the following line:
 
 
-'YOUR_SERVER_NAME',  -> Loclhost
+'YOUR_SERVER_NAME',  -> Localhost
 'YOUR_USERNAME', -> in my case (moteb)
-'YOUR_PASSWORD', -> in my case (mypassward)
+'YOUR_PASSWORD', -> in my case (my passward)
 'YOUR_DATABASE_NAME' -> in my case (manual_dir_control_panel_db)
 
 
