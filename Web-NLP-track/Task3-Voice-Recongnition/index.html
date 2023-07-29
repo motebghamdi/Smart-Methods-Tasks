@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speech Recognition Demo</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #startButton {
+      padding: 15px 25px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #startButton:hover {
+      background-color: #45a049;
+    }
+
+    #startButton:active {
+      background-color: #3e8e41;
+    }
+
+    #statusMessage,
+    #outputMessage {
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <button id="startButton">Start Speaking</button>
+  <p id="statusMessage">Press to Listen</p>
+  <p id="outputMessage"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
