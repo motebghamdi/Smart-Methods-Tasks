@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature and Humidity Data</title>
+</head>
+<body>
+    <h1>Temperature and Humidity Data</h1>
+    <div id="data-container"></div>
+
+    <script>
+        async function fetchData() {
+            const response = await fetch('http://localhost/sensors/generate_data.py');
+            const data = await response.json();
+
+            const dataContainer = document.getElementById('data-container');
+            dataContainer.innerHTML = '';
+
+            data.forEach(entry => {
+                const timestamp = new Date(entry.timestamp * 1000).toLocaleTimeString();
+                const temperature = entry.temperature.toFixed(2);
+                const humidity = entry.humidity.toFixed(2);
+
+                const entryDiv = document.createElement('div');
+                entryDiv.innerHTML = `<p>${timestamp} - Temperature: ${temperature}°C, Humidity: ${humidity}%</p>`;
+                dataContainer.appendChild(entryDiv);
+            });
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>
