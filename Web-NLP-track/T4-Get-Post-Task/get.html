@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature and Humidity Data</title>
+</head>
+<body>
+    <h1>Temperature and Humidity Data</h1>
+    <div id="data-container">
+        <p id="temperature">Loading temperature...</p>
+        <p id="humidity">Loading humidity...</p>
+    </div>
+
+    <script>
+        // Function to send data to the PHP file using the POST method
+        function sendData(temperature, humidity) {
+            fetch('post_data.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'temperature=' + temperature + '&humidity=' + humidity
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Output the response from the PHP file
+            })
+            .catch(error => {
+                console.error('Error sending data:', error);
+            });
+        }
+
+        // Function to fetch data from the Arduino simulation
+        function fetchData() {
+            // Replace these lines with the code to fetch data from your Arduino simulation
+            const temperature = Math.random() * 30 + 20; // Random temperature between 20°C and 50°C
+            const humidity = Math.random() * 50 + 50;    // Random humidity between 50% and 100%
+
+            document.getElementById('temperature').innerText = 'Temperature: ' + temperature.toFixed(2) + '°C';
+            document.getElementById('humidity').innerText = 'Humidity: ' + humidity.toFixed(1) + '%';
+
+            // Call the sendData function to post data to the PHP file
+            sendData(temperature.toFixed(2), humidity.toFixed(1));
+        }
+
+        // Fetch data every 2 seconds
+        setInterval(fetchData, 2000);
+
+        // Call the fetchData() function when the page loads
+        fetchData();
+    </script>
+</body>
+</html>
