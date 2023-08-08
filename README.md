@@ -1,2 +1,2 @@
 # Smart-Methods-Tasks
-Repo for submitting the Smart methods course tasks
+Repo for submitting the Smart-Methods course tasks
